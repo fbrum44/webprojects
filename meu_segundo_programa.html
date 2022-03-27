@@ -1,0 +1,76 @@
+<meta charset="utf-8">
+
+<script>
+
+function mostra(frase) {
+	
+	function pulaLinha() {
+		
+		document.write("<br>");
+		document.write("<br>");
+
+	}
+
+	document.write(frase);
+	pulaLinha();
+
+}
+
+var país = prompt("Digite o país que você deseja saber se é considerado desenvolvido ou não.");
+
+function calculaExpectativaDeVida(x) {
+
+	var x = parseInt(prompt("Informe a expectativa de vida nesse país."));
+	var vi = (x - 20) / (85 - 20);
+	return vi;
+
+}
+
+var expectativaDeVida = calculaExpectativaDeVida();
+
+function calculaEducaçao(x, y){
+
+	var x = parseInt(prompt("Informe o tempo de educação esperada para as pessoas."));
+	var y = parseInt(prompt("Em média, quanto tempo os cidadâos ficam na escola?"));
+	var aee = x / 18;
+	var aem = y / 15;
+	var ei = (aee + aem) / 2;
+	return ei;
+}
+
+var educaçao = calculaEducaçao();
+
+function calculaRendaPerCapita(x){
+
+	var x = parseInt(prompt("Informe a renda média."));
+	var ri = (Math.log(x) - Math.log(100)) /  (Math.log(75000) - Math.log(100))
+	return ri;
+}
+
+var renda = calculaRendaPerCapita();
+
+function calculaIdh()	{
+	var fatoresIdh = (expectativaDeVida * educaçao * renda);
+	var idh = Math.cbrt(fatoresIdh);
+	return idh;
+}	
+
+var resposta = calculaIdh();
+
+if (resposta >= 0.8) {
+
+	mostra("O IDH calculado para " + país + " é " + resposta + ". Com base nesse resultado, o país tem um alto desenvolvimento humano.");
+}
+
+if (0.8 > resposta >= 0.5){
+
+	mostra("O IDH calculado para " + país + " é " + resposta + ". Com base nesse resultado, o país é considerado em desenvolvimento.");
+
+}
+
+if(resposta < 0.5){
+
+	mostra("O IDH calculado para " + país + " é " + resposta + ". Com base nesse resultado, o país é considerado de baixo desenvolvimento.");
+}
+
+</script>
